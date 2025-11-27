@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Author Contributions - CRediT</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen, Ubuntu, Cantarell, sans-serif;
+        background: #6b8ba4;
+        min-height: 100vh;
+        padding: 20px;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+      }
+
+      .header {
+        background: #2c3e50;
+        color: white;
+        padding: 30px;
+        text-align: center;
+      }
+
+      .header h1 {
+        font-size: 28px;
+        margin-bottom: 10px;
+      }
+
+      .header p {
+        opacity: 0.9;
+        font-size: 14px;
+      }
+
+      .table-container {
+        padding: 30px;
+        overflow-x: auto;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+      }
+
+      thead {
+        background: #34495e;
+        color: white;
+      }
+
+      th {
+        padding: 15px;
+        text-align: left;
+        font-weight: 600;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      th:first-child {
+        width: 300px;
+      }
+
+      td {
+        padding: 12px 15px;
+        border-bottom: 1px solid #e0e0e0;
+      }
+
+      tr:last-child td {
+        border-bottom: none;
+      }
+
+      td:first-child {
+        font-weight: 500;
+        color: #2c3e50;
+        background: #f8f9fa;
+      }
+
+      input[type="text"] {
+        width: 100%;
+        padding: 8px 12px;
+        border: 2px solid #e0e0e0;
+        border-radius: 6px;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        background: white;
+      }
+
+      input[type="text"]:focus {
+        outline: none;
+        border-color: #ff8c42;
+        box-shadow: 0 0 0 3px rgba(255, 140, 66, 0.1);
+      }
+
+      th input[type="text"] {
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        font-weight: 600;
+        text-transform: none;
+        letter-spacing: normal;
+      }
+
+      th input[type="text"]::placeholder {
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      th input[type="text"]:focus {
+        background: white;
+        color: #2c3e50;
+        border-color: rgba(255, 255, 255, 0.8);
+        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+      }
+
+      input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+        accent-color: #ff8c42;
+      }
+
+      .add-column-btn {
+        margin: 20px 0;
+        padding: 12px 24px;
+        background: #ff8c42;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .add-column-btn:hover {
+        background: #e67e2e;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(255, 140, 66, 0.4);
+      }
+
+      .remove-col-btn {
+        background: #e74c3c;
+        color: white;
+        border: none;
+        padding: 6px 12px;
+        border-radius: 4px;
+        font-size: 12px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .remove-col-btn:hover {
+        background: #c0392b;
+      }
+
+      .actions {
+        padding: 20px 30px;
+        background: #f8f9fa;
+        border-top: 1px solid #e0e0e0;
+        display: flex;
+        gap: 10px;
+        justify-content: flex-end;
+      }
+
+      .btn {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .btn-primary {
+        background: #ff8c42;
+        color: white;
+      }
+
+      .btn-primary:hover {
+        background: #e67e2e;
+      }
+
+      .btn-secondary {
+        background: #95a5a6;
+        color: white;
+      }
+
+      .btn-secondary:hover {
+        background: #7f8c8d;
+      }
+
+      .footer {
+        padding: 15px 30px;
+        background: #f8f9fa;
+        border-top: 1px solid #e0e0e0;
+        text-align: center;
+        font-size: 12px;
+        color: #6c757d;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>Author Contributions - CRediT</h1>
+        <p>Contributor Roles Taxonomy - Editable Table</p>
+      </div>
+
+      <div class="table-container">
+        <button class="add-column-btn" onclick="addColumn()">
+          + Add Author Column
+        </button>
+
+        <table id="contributionsTable">
+          <thead>
+            <tr>
+              <th>Contribution Type</th>
+              <th>
+                <input
+                  type="text"
+                  placeholder="Enter author name"
+                  class="author-name-input"
+                />
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Conceptualisation</td>
+              <td><input type="checkbox" /></td>
+            </tr>
+            <tr>
+              <td>Data curation</td>
+              <td><input type="checkbox" /></td>
+            </tr>
+            <tr>
+              <td>Formal analysis</td>
+              <td><input type="checkbox" /></td>
+            </tr>
+            <tr>
+              <td>Funding acquisition</td>
+              <td><input type="checkbox" /></td>
+            </tr>
+            <tr>
+              <td>Investigation</td>
+              <td><input type="checkbox" /></td>
+            </tr>
+            <tr>
+              <td>Methodology</td>
+              <td><input type="checkbox" /></td>
+            </tr>
+            <tr>
+              <td>Project administration</td>
+              <td><input type="checkbox" /></td>
+            </tr>
+            <tr>
+              <td>Resources</td>
+              <td><input type="checkbox" /></td>
+            </tr>
+            <tr>
+              <td>Software</td>
+              <td><input type="checkbox" /></td>
+            </tr>
+            <tr>
+              <td>Supervision</td>
+              <td><input type="checkbox" /></td>
+            </tr>
+            <tr>
+              <td>Validation</td>
+              <td><input type="checkbox" /></td>
+            </tr>
+            <tr>
+              <td>Visualisation</td>
+              <td><input type="checkbox" /></td>
+            </tr>
+            <tr>
+              <td>Writing – original draft</td>
+              <td><input type="checkbox" /></td>
+            </tr>
+            <tr>
+              <td>Writing – review and editing</td>
+              <td><input type="checkbox" /></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="actions">
+        <button class="btn btn-secondary" onclick="clearAll()">
+          Clear All
+        </button>
+        <button class="btn btn-primary" onclick="exportData()">
+          Export Data
+        </button>
+      </div>
+
+      <div class="footer">
+        <p>&copy; Copyright Dr Lixu Liu</p>
+      </div>
+    </div>
+
+    <script>
+      let columnCount = 1;
+
+      function addColumn() {
+        columnCount++;
+        const table = document.getElementById("contributionsTable");
+        const headerRow = table.querySelector("thead tr");
+        const tbody = table.querySelector("tbody");
+
+        // Add header with editable input
+        const newHeader = document.createElement("th");
+        const headerInput = document.createElement("input");
+        headerInput.type = "text";
+        headerInput.placeholder = "Enter author name";
+        headerInput.className = "author-name-input";
+        newHeader.appendChild(headerInput);
+        headerRow.appendChild(newHeader);
+
+        // Add cells with checkboxes to each row
+        const rows = tbody.querySelectorAll("tr");
+        rows.forEach((row) => {
+          const newCell = document.createElement("td");
+          const checkbox = document.createElement("input");
+          checkbox.type = "checkbox";
+          newCell.appendChild(checkbox);
+          row.appendChild(newCell);
+        });
+      }
+
+      function removeColumn(columnIndex) {
+        const table = document.getElementById("contributionsTable");
+        const headerRow = table.querySelector("thead tr");
+        const rows = table.querySelectorAll("tbody tr");
+
+        // Remove header
+        if (headerRow.children.length > columnIndex + 1) {
+          headerRow.removeChild(headerRow.children[columnIndex + 1]);
+        }
+
+        // Remove cells from each row
+        rows.forEach((row) => {
+          if (row.children.length > columnIndex + 1) {
+            row.removeChild(row.children[columnIndex + 1]);
+          }
+        });
+      }
+
+      function clearAll() {
+        if (confirm("Are you sure you want to clear all inputs?")) {
+          // Clear author name inputs
+          const authorInputs = document.querySelectorAll(
+            "#contributionsTable th input[type='text']"
+          );
+          authorInputs.forEach((input) => (input.value = ""));
+          // Clear checkboxes
+          const checkboxes = document.querySelectorAll(
+            "#contributionsTable input[type='checkbox']"
+          );
+          checkboxes.forEach((checkbox) => (checkbox.checked = false));
+        }
+      }
+
+      function downloadCSV(csv, filename) {
+        const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+        const link = document.createElement("a");
+        const url = URL.createObjectURL(blob);
+        link.setAttribute("href", url);
+        link.setAttribute("download", filename);
+        link.style.visibility = "hidden";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        // Clean up the URL object
+        setTimeout(() => URL.revokeObjectURL(url), 100);
+      }
+
+      function downloadTXT(txt, filename) {
+        const blob = new Blob([txt], { type: "text/plain;charset=utf-8;" });
+        const link = document.createElement("a");
+        const url = URL.createObjectURL(blob);
+        link.setAttribute("href", url);
+        link.setAttribute("download", filename);
+        link.style.visibility = "hidden";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        // Clean up the URL object
+        setTimeout(() => URL.revokeObjectURL(url), 100);
+      }
+
+      function exportData() {
+        const table = document.getElementById("contributionsTable");
+        const headerRow = table.querySelector("thead tr");
+        const rows = Array.from(table.querySelectorAll("tbody tr"));
+
+        // Get author names from header input fields
+        const authorHeaders = [];
+        const headerCells = Array.from(headerRow.querySelectorAll("th"));
+        headerCells.forEach((th, index) => {
+          if (index === 0) {
+            // First column is "Contribution Type"
+            authorHeaders.push("Contribution Type");
+          } else {
+            // Other columns are author name input fields
+            const authorInput = th.querySelector("input[type='text']");
+            const authorName =
+              authorInput && authorInput.value.trim()
+                ? authorInput.value.trim()
+                : `Author ${index}`;
+            authorHeaders.push(authorName);
+          }
+        });
+
+        const contributionTypes = rows.map(
+          (row) => row.querySelector("td:first-child").textContent
+        );
+
+        // First CSV: Original format (contribution type as rows, author as columns)
+        let csv1 = authorHeaders.join(",") + "\n";
+        // First TXT: Original format (colon between first and second column, semicolon for others)
+        let txt1 =
+          authorHeaders[0] + ":" + authorHeaders.slice(1).join(";") + "\n";
+
+        rows.forEach((row) => {
+          const cells = Array.from(row.querySelectorAll("td"));
+          const rowData = [];
+          const rowDataTxt = [];
+          rowData.push(cells[0].textContent); // Contribution type
+          rowDataTxt.push(cells[0].textContent); // Contribution type
+          for (let i = 1; i < cells.length; i++) {
+            const checkbox = cells[i].querySelector("input[type='checkbox']");
+            const authorName = authorHeaders[i];
+            // If checkbox is checked, show author name, otherwise empty
+            const value = checkbox && checkbox.checked ? authorName : "";
+            // Handle commas and quotes in CSV
+            rowData.push(
+              value.includes(",") || value.includes('"')
+                ? `"${value.replace(/"/g, '""')}"`
+                : value
+            );
+            // TXT version uses value directly, no quote handling needed
+            rowDataTxt.push(value);
+          }
+          csv1 += rowData.join(",") + "\n";
+          // TXT format: colon between first and second column, semicolon for others
+          txt1 += rowDataTxt[0] + ":" + rowDataTxt.slice(1).join(";") + "\n";
+        });
+
+        // Second CSV: Transposed format (author as rows, contribution type as columns)
+        const authorNames = authorHeaders.slice(1); // Remove "Contribution Type"
+
+        // Build transposed data structure
+        const authorData = {};
+        authorNames.forEach((authorName, authorIndex) => {
+          authorData[authorName] = {};
+          rows.forEach((row, rowIndex) => {
+            const checkbox = row.querySelectorAll("td input[type='checkbox']")[
+              authorIndex
+            ];
+            if (checkbox && checkbox.checked) {
+              authorData[authorName][contributionTypes[rowIndex]] =
+                contributionTypes[rowIndex];
+            }
+          });
+        });
+
+        // Generate transposed CSV
+        let csv2 = "Author," + contributionTypes.join(",") + "\n";
+        // Generate transposed TXT (colon between first and second column, semicolon for others)
+        let txt2 =
+          "Author:" +
+          (contributionTypes.length > 0
+            ? contributionTypes[0] +
+              (contributionTypes.length > 1
+                ? ";" + contributionTypes.slice(1).join(";")
+                : "")
+            : "") +
+          "\n";
+
+        authorNames.forEach((authorName) => {
+          const rowData = [authorName];
+          const rowDataTxt = [authorName];
+          contributionTypes.forEach((type) => {
+            // If author has this contribution type, show type name, otherwise empty
+            const value = authorData[authorName][type] || "";
+            // Handle commas and quotes in CSV
+            rowData.push(
+              value.includes(",") || value.includes('"')
+                ? `"${value.replace(/"/g, '""')}"`
+                : value
+            );
+            // TXT version uses value directly
+            rowDataTxt.push(value);
+          });
+          csv2 += rowData.join(",") + "\n";
+          // TXT format: colon between first and second column, semicolon for others
+          txt2 += rowDataTxt[0] + ":" + rowDataTxt.slice(1).join(";") + "\n";
+        });
+
+        // Download four files with delays between each to ensure proper download
+        downloadCSV(csv1, "author_contributions_by_type.csv");
+        setTimeout(() => {
+          downloadTXT(txt1, "author_contributions_by_type.txt");
+          setTimeout(() => {
+            downloadCSV(csv2, "author_contributions_by_author.csv");
+            setTimeout(() => {
+              downloadTXT(txt2, "author_contributions_by_author.txt");
+            }, 300);
+          }, 300);
+        }, 300);
+      }
+    </script>
+  </body>
+</html>
