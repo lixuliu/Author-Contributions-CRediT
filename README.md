@@ -2,6 +2,8 @@
 
 A web-based tool for managing and exporting author contributions using the Contributor Roles Taxonomy (CRediT) system.
 
+**🌐 Live Site:** [https://lixuliu.github.io/Author-Contributions-CRediT/](https://lixuliu.github.io/Author-Contributions-CRediT/)
+
 ## About CRediT
 
 This tool uses the **Contributor Roles Taxonomy (CRediT)**, a community-owned 14-role taxonomy approved as an ANSI/NISO standard in 2022. CRediT is licensed under Creative Commons 4.0 (CC-BY) for permissive re-use.
@@ -70,7 +72,7 @@ Use the "Clear All" button to reset all author names and checkbox selections.
 
 ## Browser Compatibility
 
-This tool works in all modern web browsers. Simply open `contributions.html` in your browser.
+This tool works in all modern web browsers. Access it directly at the [live site](https://lixuliu.github.io/Author-Contributions-CRediT/) or download and open `index.html` locally in your browser.
 
 ## Copyright
 
