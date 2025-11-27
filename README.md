@@ -2,6 +2,14 @@
 
 A web-based tool for managing and exporting author contributions using the Contributor Roles Taxonomy (CRediT) system.
 
+## About CRediT
+
+This tool uses the **Contributor Roles Taxonomy (CRediT)**, a community-owned 14-role taxonomy approved as an ANSI/NISO standard in 2022. CRediT is licensed under Creative Commons 4.0 (CC-BY) for permissive re-use.
+
+**CRediT Source:** [https://credit.niso.org](https://credit.niso.org)
+
+The CRediT taxonomy is used to describe the key types of contributions typically made to the production and publication of research output such as research articles.
+
 ## Features
 
 - **Editable Author Names**: Enter author names directly in the table headers
@@ -15,7 +23,7 @@ A web-based tool for managing and exporting author contributions using the Contr
 
 ## Contribution Types
 
-The tool includes all 14 CRediT contribution types:
+The tool includes all 14 CRediT contribution types (as defined by the [CRediT taxonomy](https://credit.niso.org)):
 
 1. Conceptualisation
 2. Data curation
