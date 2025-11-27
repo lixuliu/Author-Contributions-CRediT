@@ -4,6 +4,8 @@ A web-based tool for managing and exporting author contributions using the Contr
 
 **🌐 Live Site:** [https://lixuliu.github.io/Author-Contributions-CRediT/](https://lixuliu.github.io/Author-Contributions-CRediT/)
 
+[![Sponsor](https://img.shields.io/badge/Sponsor-GitHub%20Sponsors-ff69b4?logo=github)](https://github.com/sponsors/lixuliu) [![Ko-fi](https://img.shields.io/badge/Ko--fi-Buy%20me%20a%20coffee-ff5f5f?logo=ko-fi)](https://ko-fi.com/lixuliu)
+
 ![Demo](demo.png)
 
 ## About CRediT
