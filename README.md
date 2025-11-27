@@ -4,6 +4,8 @@ A web-based tool for managing and exporting author contributions using the Contr
 
 **🌐 Live Site:** [https://lixuliu.github.io/Author-Contributions-CRediT/](https://lixuliu.github.io/Author-Contributions-CRediT/)
 
+![Demo](demo.png)
+
 ## About CRediT
 
 This tool uses the **Contributor Roles Taxonomy (CRediT)**, a community-owned 14-role taxonomy approved as an ANSI/NISO standard in 2022. CRediT is licensed under Creative Commons 4.0 (CC-BY) for permissive re-use.
